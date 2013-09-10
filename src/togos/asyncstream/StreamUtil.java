@@ -1,5 +1,6 @@
 package togos.asyncstream;
 
+import java.io.Closeable;
 import java.io.InputStream;
 import java.io.Reader;
 import java.io.Writer;
@@ -36,5 +37,14 @@ public final class StreamUtil
 				if( closeOnEnd ) w.close();
 			}
 		});
+	}
+	
+	public static <T> void closeOnEnd( StreamSource<T> source, final Closeable closeable ) {
+		source.pipe( new StreamDestination<T>() {
+			@Override public void data(T value) throws Exception {};
+			@Override public void end() throws Exception {
+				closeable.close();
+			}
+		} );
 	}
 }
