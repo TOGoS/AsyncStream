@@ -27,7 +27,11 @@ public class BaseStreamSource<T> implements StreamSource<T>
 		_end();
 	}
 	
-	protected StreamDestination<T> asDestination() {
+	/**
+	 * Returns a destination stream that forwards
+	 * to the ~outputs~ of this stream.
+	 */
+	protected StreamDestination<T> getSourceOutputAsDestination() {
 		return new StreamDestination<T>() {
 			@Override public void data(T value) throws Exception { _data(value); }
 			@Override public void end() throws Exception { _end(); }
