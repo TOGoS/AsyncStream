@@ -48,4 +48,13 @@ public final class StreamUtil
 			}
 		} );
 	}
+	
+	/**
+	 * Turn a stream that only throws unchecked exceptions
+	 * into one that claims to throw some checked one.
+	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public static final <T,E extends Throwable> StreamDestination<T,E> recheck( StreamDestination<? super T,? extends RuntimeException> d ) {
+		return (StreamDestination<T,E>)(StreamDestination)d;
+	}
 }

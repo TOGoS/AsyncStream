@@ -10,6 +10,13 @@ public class BaseStreamSource<T, E extends Throwable> implements StreamSource<T,
 		pipes.add(dest);
 	}
 	
+	/**
+	 * Same as pipe, but allows StreamDestinations that are parameterized as throwing unchecked exceptions
+	 */
+	public void pipeRechecked( StreamDestination<? super T, ? extends RuntimeException> dest ) {
+		pipes.add( StreamUtil.<T,E>recheck(dest) );
+	}
+	
 	public void _data( T value ) throws E {
 		for( StreamDestination<? super T, ? extends E> dest : pipes ) {
 			dest.data( value );
