@@ -1,7 +1,7 @@
 package togos.asyncstream;
 
-public interface StreamDestination<T>
+public interface StreamDestination<T,E extends Throwable>
 {
-	public void data( T value ) throws Exception;
-	public void end() throws Exception;
+	public void data( T value ) throws E;
+	public void end() throws E;
 }

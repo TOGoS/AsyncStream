@@ -3,7 +3,7 @@ package togos.asyncstream;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class Collector<T> implements StreamDestination<T>
+public class Collector<T> implements StreamDestination<T, RuntimeException>
 {
 	public final Collection<T> collection;
 	

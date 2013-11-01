@@ -1,12 +1,12 @@
 package togos.asyncstream;
 
-public class StreamFork<T> extends BaseStreamSource<T> implements StreamDestination<T>
+public class StreamFork<T,E extends Throwable> extends BaseStreamSource<T,E> implements StreamDestination<T,E>
 {
-	@Override public void data( T value ) throws Exception {
+	@Override public void data( T value ) throws E {
 		_data( value );
     }
 
-	@Override public void end() throws Exception {
+	@Override public void end() throws E {
 		_end();
     }
 }

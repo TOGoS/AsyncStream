@@ -8,10 +8,10 @@ import java.io.IOException;
  */
 public class StreamAppendable implements Appendable
 {
-	protected final StreamDestination<char[]> sd;
+	protected final StreamDestination<char[], ? extends Exception> sd;
 	protected char[] buffer;
 	
-	public StreamAppendable( StreamDestination<char[]> sd ) {
+	public StreamAppendable( StreamDestination<char[], ? extends Exception> sd ) {
 		this.sd = sd;
 	}
 	
